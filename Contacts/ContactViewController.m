@@ -47,6 +47,8 @@
 -(void)editContactPressed{
     EditContactViewController *editContactsVC = [[EditContactViewController alloc] init];
     editContactsVC.contact = self.contact;
+    editContactsVC.dataSource = self.dataSource;
+    editContactsVC.rowIndexPath = self.rowIndexPath;
     [self presentViewController:editContactsVC animated:YES completion:nil];
 }
 

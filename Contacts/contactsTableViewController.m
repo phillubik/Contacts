@@ -50,7 +50,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    //created this to call data model??
+    [self.tableView reloadData];
 }
 
 -(void)dataRetrieved{
@@ -101,7 +101,9 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ContactViewController *contactVC = [[ContactViewController alloc]init];
+    contactVC.dataSource = self.dataSource;
     contactVC.contact = self.dataSource.contactList[indexPath.row];
+    contactVC.rowIndexPath = indexPath.row;
     
     [self.navigationController pushViewController:contactVC animated:YES];
     

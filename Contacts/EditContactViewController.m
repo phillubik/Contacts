@@ -24,7 +24,7 @@
     self.firstNameField = [[UITextField alloc]init];
     self.firstNameField.frame = CGRectMake(20, 80, 280, 40);
     self.firstNameField.backgroundColor = [UIColor whiteColor];
-    self.firstNameField.text = self.contact.firstName;
+    self.firstNameField.text = [self.dataSource.contactList[self.rowIndexPath] firstName];
     self.firstNameField.keyboardType = UIKeyboardTypeDefault;
     self.firstNameField.delegate = self;
     [self.view addSubview:self.firstNameField];
@@ -32,7 +32,7 @@
     self.lastNameField = [[UITextField alloc]init];
     self.lastNameField.frame = CGRectMake(20, 140, 280, 40);
     self.lastNameField.backgroundColor = [UIColor whiteColor];
-    self.lastNameField.text = self.contact.lastName;
+    self.lastNameField.text = [self.dataSource.contactList[self.rowIndexPath] lastName];
     self.lastNameField.keyboardType = UIKeyboardTypeDefault;
     self.lastNameField.delegate = self;
     [self.view addSubview:self.lastNameField];
@@ -40,7 +40,7 @@
     self.emailField = [[UITextField alloc]init];
     self.emailField.frame = CGRectMake(20, 200, 280, 40);
     self.emailField.backgroundColor = [UIColor whiteColor];
-    self.emailField.text = self.contact.email;
+    self.emailField.text = [self.dataSource.contactList[self.rowIndexPath] email];
     self.emailField.keyboardType = UIKeyboardTypeEmailAddress;
     self.emailField.delegate = self;
     [self.view addSubview:self.emailField];
@@ -48,7 +48,7 @@
     self.phoneNumberField = [[UITextField alloc]init];
     self.phoneNumberField.frame = CGRectMake(20, 260, 280, 40);
     self.phoneNumberField.backgroundColor = [UIColor whiteColor];
-    self.phoneNumberField.text = self.contact.phoneNumber;
+    self.phoneNumberField.text = [self.dataSource.contactList[self.rowIndexPath] phoneNumber];
     self.phoneNumberField.keyboardType = UIKeyboardTypeDecimalPad;
     self.phoneNumberField.delegate = self;
     [self.view addSubview:self.phoneNumberField];
@@ -74,7 +74,13 @@
     self.contact.email = self.emailField.text;
     self.contact.phoneNumber = self.phoneNumberField.text;
     
-    //Save Model
+    NSMutableArray *tempMutableArray = [[NSMutableArray alloc] initWithArray:self.dataSource.contactList];
+    [tempMutableArray replaceObjectAtIndex:self.rowIndexPath withObject:self.contact];
+    
+    self.dataSource.contactList = [[NSArray alloc] initWithArray:tempMutableArray];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 -(void)canclePressed{
