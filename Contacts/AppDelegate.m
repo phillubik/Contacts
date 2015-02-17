@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "contactsTableViewController.h"
+#import "addContactViewController.h"
+
 
 @interface AppDelegate ()
 
@@ -16,7 +19,27 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+    CGRect viewRect = [[UIScreen mainScreen] bounds];
+    self.window = [[UIWindow alloc] initWithFrame:viewRect];
+    
+    contactsTableViewController *contactsTVC = [[contactsTableViewController alloc] init];
+    //Don't need
+    //addContactViewController *addContactsVC = [[addContactViewController alloc] init];
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:contactsTVC];
+    
+    /*Don't need
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    [tabBarController setViewControllers:@[navController,addContactsVC]];
+     
+    self.window.rootViewController = tabBarController;
+    */
+    self.window.rootViewController = navController;
+    
+    //Allow screen to take inputs
+    [self.window makeKeyAndVisible];
+
     return YES;
 }
 
