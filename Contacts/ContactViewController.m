@@ -18,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //Set objects on view
+    
+    NSLog(@"ContactViewController:  viewDidLoad");
+    
     self.view.backgroundColor = [UIColor whiteColor];
     // create data containers
     self.firstNameLabel = [[UILabel alloc]init];

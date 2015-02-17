@@ -13,8 +13,6 @@
 
 @property (strong, nonatomic) NSArray *contactList; //desirable?
 
-//-(void)addContact:(contact *) aContact;
-//-(NSMutableArray *)getContact:(NSString *) searchItem;
 -(id)initWithData;
 -(id)init;
 

@@ -11,6 +11,7 @@
 @implementation contact
 
 -(id)init{
+    //will ensure that values are present
     self = [self initWithFirstName:@"defaultFirstName" lastName:@"defaultLastName" email:@"defaultEmail" phoneNumber:@"defaultPhoneNumber"];
     return self;
 }

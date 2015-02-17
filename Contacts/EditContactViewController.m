@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"editContentViewController:  viewDidLoad");
     self.view.backgroundColor = [UIColor grayColor];
     // create data containers
     self.firstNameField = [[UITextField alloc]init];

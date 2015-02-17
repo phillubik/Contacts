@@ -19,22 +19,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+    //set window
     CGRect viewRect = [[UIScreen mainScreen] bounds];
     self.window = [[UIWindow alloc] initWithFrame:viewRect];
     
+    //set root controller
     contactsTableViewController *contactsTVC = [[contactsTableViewController alloc] init];
-    //Don't need
-    //addContactViewController *addContactsVC = [[addContactViewController alloc] init];
-    
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:contactsTVC];
-    
-    /*Don't need
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    [tabBarController setViewControllers:@[navController,addContactsVC]];
-     
-    self.window.rootViewController = tabBarController;
-    */
     self.window.rootViewController = navController;
     
     //Allow screen to take inputs

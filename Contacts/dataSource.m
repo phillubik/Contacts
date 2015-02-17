@@ -11,32 +11,6 @@
 
 @implementation dataSource
 
-/*-(void)addContact:(contact *) aContact{//json object to be
-    [self.contactList addObject:aContact];
-    NSLog(@"Added contact to list: %@", aContact);
-}
-
--(NSMutableArray *)getContact:(NSString *) searchItem{
-    NSMutableArray *returnContact = [[NSMutableArray alloc] init];
-    for (int i = 1; i < self.contactList.count; i++) {
-        if (self.contactList) { //here
-            [returnContact addObject:self.contactList[i]];
-        }
-    }
-    return returnContact;
-}
-
--(dataSource *)initWithData{
-    dataSource *newDataSource = [[dataSource alloc] init];
-    contact *newContact = [[contact alloc] initWithInformation:@"Phil" :@"Lubik" :@"Phil.Lubik@gmail.com" :@"8606050757"];
-    //create a contact using dummy data
-    //add contact to list
-    [newDataSource addContact:newContact];
-    NSLog(@"Created New DataSource");
-    return newDataSource;
-}
- */
-
 -(id) init{
     self = [self initWithData];//placeholder for temporary data
     return self;
@@ -48,8 +22,8 @@
     if (self){
         NSMutableArray *tempDictionaryArray = [[NSMutableArray alloc] init];
         NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-        //refactor this code to take in JSON
         
+        //Dummy Data to put in a temporary Dictionary similar to JSON output
         NSDictionary *aContactDictionary = @{@"firstName": @"Phil",
                                    @"lastName":@"Lubik",
                                    @"email":@"Phil.lubik@gmail.com",
@@ -70,13 +44,13 @@
         [tempDictionaryArray addObject:bContactDictionary];
         [tempDictionaryArray addObject:cContactDictionary];
         
-        //Normally I would run a request for an array of dictionaries (JSON) but here I had to create
+        //Fast enumerate through tempDictionaryArray to create contacts and add to tempArray (mutable)
         
         for (NSDictionary *oneDictionary in tempDictionaryArray){
             contact *newContact = [[contact alloc] initWithFirstName:oneDictionary[@"firstName"] lastName:oneDictionary[@"lastName"] email:oneDictionary[@"email"] phoneNumber:oneDictionary[@"phoneNumber"]];
             [tempArray addObject:newContact];
         }
-        
+        //Use mutable temporary array to set immuable property
         self.contactList=[[NSArray alloc] initWithArray:tempArray];
     }
     NSLog(@"dataSource initialized");

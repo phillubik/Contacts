@@ -25,10 +25,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self){
         self.title = @"Contacts";
- /*       self.tabBarItem.image = [UIImage imageNamed:@"satellite.png"];
-        self.imageTitleArray = @[@"bomb",@"ios",@"RU",@"tick",@"arch"];
-        self.imageFileNameArray = @[@"bomb.png",@"keep calm.png",@"Rutgers.gif",@"tick.png",@"arch_linux-wallpaper-800x600.jpg"];
-  */
         self.addContactBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addContactPressed)];
         self.navigationItem.rightBarButtonItem = self.addContactBarButton;
   }
@@ -37,7 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"contactsTableViewController called");
+    NSLog(@"contactsTableViewController:  viewDidLoad");
     
     self.dataSource = [[dataSource alloc] initWithData];
     
@@ -46,7 +42,6 @@
      addObserver:self selector:@selector(dataRetrieved) name:@"initWithDataFinishedLoading" object:nil];
     
 
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -59,6 +54,8 @@
 }
 
 -(void)dataRetrieved{
+    //Run any secondary code now that data has been retrieved
+    //How to ensure that table is not painted before data is retrieved?  #question
     NSLog(@"Data retrieved: %@",self.dataSource);
 }
 
@@ -88,13 +85,12 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"contactCell"];
     if(cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:@"pCell"];
+                                      reuseIdentifier:@"contactCell"];
     }
     
-    //cell.textLabel.text = [NSString stringWithFormat:@"%ld", (long)indexPath.row]   /*[self.dataSource.contactList[indexPath.row] name]*/;
     cell.textLabel.text = [[[self.dataSource.contactList[indexPath.row] firstName] stringByAppendingString:@" "] stringByAppendingString:[self.dataSource.contactList[indexPath.row] lastName]];
     return cell;
 }
