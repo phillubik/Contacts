@@ -62,6 +62,8 @@
 -(void)addContactPressed{
     //modal view
     addContactViewController *addContactsVC = [[addContactViewController alloc] init];
+    //pass in data model
+    addContactsVC.dataSource = self.dataSource;
     [self presentViewController:addContactsVC animated:YES completion:nil];
 }
 

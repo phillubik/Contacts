@@ -85,12 +85,20 @@
 }
 
 -(void)savePressed{
+    self.contact = [[contact alloc] init];
     self.contact.firstName = self.firstNameField.text;
     self.contact.lastName = self.lastNameField.text;
     self.contact.email = self.emailField.text;
     self.contact.phoneNumber = self.phoneNumberField.text;
     
-    //Save Model
+    //create mutable array
+    NSMutableArray *tempMutableArray = [[NSMutableArray alloc] initWithArray:self.dataSource.contactList];
+    //add contact to tempMutableArray
+    [tempMutableArray addObject:self.contact];
+    //re init datasource with tempMutableArray
+    self.dataSource.contactList = [[NSArray alloc] initWithArray:tempMutableArray];
+    //gtfo
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)canclePressed{

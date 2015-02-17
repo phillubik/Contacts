@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "contact.h"
+#import "dataSource.h"
 
 @interface addContactViewController : UIViewController
 
+@property (strong, nonatomic) dataSource *dataSource;
 @property  (strong, nonatomic) contact * contact;
 @property (strong, nonatomic) UITextField *firstNameField;
 @property (strong, nonatomic) UITextField *lastNameField;
