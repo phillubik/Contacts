@@ -9,11 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "contact.h"
 
-@interface dataSource : NSObject
+@interface dataSource : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSArray *contactList; //desirable?
 
 -(id)initWithData;
 -(id)init;
+-(void)encodeWithCoder:(NSCoder *)aCoder;
+-(dataSource *)initWithCoder:(NSCoder *)aDecoder;
+
++(NSString *)getPathToArchive;
++(void)saveDataSource:(dataSource *)aDataSource;
++(dataSource *)getDataSource;
 
 @end

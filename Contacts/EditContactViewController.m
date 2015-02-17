@@ -79,6 +79,9 @@
     
     self.dataSource.contactList = [[NSArray alloc] initWithArray:tempMutableArray];
     
+    //Save Archive ERROR WHEN UNCOMMENT
+    //[dataSource saveDataSource:self.dataSource];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }

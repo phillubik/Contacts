@@ -12,7 +12,13 @@
 @implementation dataSource
 
 -(id) init{
-    self = [self initWithData];//placeholder for temporary data
+    //Pull data from the model if exists if not init with data
+    if ([dataSource getDataSource]){
+        self = [dataSource getDataSource];
+    } else {
+        self = [self initWithData];
+    }
+
     return self;
 }
 
@@ -54,12 +60,44 @@
         self.contactList=[[NSArray alloc] initWithArray:tempArray];
     }
     NSLog(@"dataSource initialized");
-    
+    //Save Archive ERROR WHEN UNCOMMENT
+    //[dataSource saveDataSource:self];
     //Send notification that data is in the model
     [[NSNotificationCenter defaultCenter] postNotificationName:@"initWithDataFinishedLoading" object:nil];
     
     return self;
     
 }
+
+-(void) encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:self.contactList forKey:@"contactsList"];
+}
+
+-(dataSource *) initWithCoder:(NSCoder *)aDecoder{
+    self = [super init];
+    if(self){
+        self.contactList = [aDecoder decodeObjectForKey:@"contactsList"];
+    }
+    return self;
+}
+
+
++(NSString *) getPathToArchive {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docsDir = [paths objectAtIndex:0];    //Assumes that there is only one directory in documents.  Should look in future for multiple
+    return [docsDir stringByAppendingString:@"dataSource.model"];
+}
+
++(void)saveDataSource:(dataSource *)aDataSource{
+    //First Try
+    //[NSKeyedArchiver archiveRootObject:aDataSource toFile:[dataSource getPathToArchive]];
+    //Solution from:  http://stackoverflow.com/questions/3648558/save-and-restore-an-array-of-custom-objects did not solve problem
+    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:aDataSource] forKey:@"dataSource"];
+}
+
++(dataSource *)getDataSource{
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[dataSource getPathToArchive]];
+}
+
      
 @end

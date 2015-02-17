@@ -97,6 +97,8 @@
     [tempMutableArray addObject:self.contact];
     //re init datasource with tempMutableArray
     self.dataSource.contactList = [[NSArray alloc] initWithArray:tempMutableArray];
+    //Save Archive ERROR WHEN UNCOMMENT
+    //[dataSource saveDataSource:self.dataSource];
     //gtfo
     [self dismissViewControllerAnimated:YES completion:nil];
 }
