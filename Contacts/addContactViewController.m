@@ -84,6 +84,10 @@
     return YES;
 }
 
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.phoneNumberField resignFirstResponder];
+}
+
 -(void)savePressed{
     self.contact = [[contact alloc] init];
     self.contact.firstName = self.firstNameField.text;
